@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 namespace App\Test;
 
 use App\HelloWorld;
@@ -43,5 +44,12 @@ class HelloWorldTest extends TestCase
         $helloWorld = new HelloWorld();
         $expectedAnswer = $helloWorld->sayHello('unit testers');
         $this->assertSame('Hello unit testers!', $expectedAnswer);
+    }
+
+    public function testAppThrowExceptionIfNoStringArgument()
+    {
+        $helloWorld = new HelloWorld();
+        $this->expectException(\TypeError::class);
+        $helloWorld->sayHello(false);
     }
 }
